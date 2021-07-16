@@ -5,7 +5,7 @@ interface myInterface {
 }
 
 export function readInformationBadly(properties: myInterface): void {
-  console.log(properties.property1); // why ask for an interface if we only use one property?
+  console.log(properties.property1); // Why ask for an interface if we only use one property?
 }
 
 export function readInformationWithInlineType(property1: string): void {
@@ -16,5 +16,5 @@ export function readInformationAndCallBackToGivenFunction(
   properties: myInterface,
   callback: (value: string) => void,
 ): void {
-  callback(properties.property1); // what if I change this to property2?
+  callback(properties.property1); // What if I change this to property2?
 }

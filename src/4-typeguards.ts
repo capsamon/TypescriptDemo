@@ -1,20 +1,24 @@
+//You can ignore this error
 import { Router } from 'express';
 
 Router().use('/test', (req, res) => {
   const body = req.body;
+  body.property1;
+  body.property1.additional;
 
   if (!isValidBody(body)) {
     return res.sendStatus(400);
   }
 
-  // body is now typed!
+  //Body is now typed!
   body.property1;
+  body.property1.additional;
 
   return res.sendStatus(200);
 });
 
 function isValidBody(body: any): body is TestBody {
-  //valideer of body aanwezig is en of juiste properties aanwezig zijn
+  //Validate here if the body is in the correct format
   return true;
 }
 

@@ -1,20 +1,20 @@
 export function functionWithAny(a: any) {
-  a.b(); // OK
+  a.b(); //This will accept 'everything'
 }
 export function functionWithUnknown(a: unknown) {
-  a.b();
+  a.b(); //This will accept 'nothing'
 }
 
-// voorbeeld wanneer unknown handig kan zijn;
+// Example when to use unknown
 function parseJsonString(json: string): unknown {
   return JSON.parse(json);
 }
 const json = parseJsonString("{a: 'json string'}");
-// json is unknown. We have to check if it is valid first!
+// Json is unknown. We have to check if it is valid first!
 if (!checkJson(json)) {
   throw new Error('Not the JSON we expect!');
 }
-// not it is properly typed!
+// Now it is properly typed!
 console.log(json.a);
 
 function checkJson(json: unknown): json is { a: string } {
