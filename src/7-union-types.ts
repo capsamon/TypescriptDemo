@@ -1,54 +1,34 @@
-import Jimp, { read } from 'jimp';
-
-const supportedMimeTypes = ['image/jpeg'] as const;
-type MimeType = typeof supportedMimeTypes[number];
-
-const DEFAULTIMAGEQUALITYLEVEL = 80;
-
-interface configuration {
-  maxWidth?: number;
-  maxHeight?: number;
-  qualityLevel?: number;
+function padLeft(value: string, padding: any) {
+  if (typeof padding === "number") {
+    return Array(padding + 1).join(" ") + value;
+  }
+  if (typeof padding === "string") {
+    return padding + value;
+  }
+  throw new Error(`Expected string or number, got '${typeof padding}'.`);
 }
 
-export class ImageProcessor {
-  // real life example!
-  private maxWidth?: number;
-  private maxHeight?: number; // these are both the same
-  private qualityLevel: number | undefined; // these are both the same
+//Returns "    Hello world"
+padLeft("Hello world", 4);
 
-  constructor(options?: configuration) {
-    this.maxWidth = options?.maxWidth;
-    this.maxHeight = options?.maxHeight;
-    this.qualityLevel = options?.qualityLevel ?? DEFAULTIMAGEQUALITYLEVEL;
-    // difference between ?? and || in this case!
-    // When we use qualityLevel 0 and use ||, it falls back to default
+//Returns "Hello world test"
+padLeft2("Hello world", " test");
+
+//Throws an error at runtime! But TS is okay with it..
+padLeft("Hello world", true);
+
+
+//Better would be to use a union type
+function padLeft2(value: string, padding: string | number) {
+  if (typeof padding === "number") {
+    return Array(padding + 1).join(" ") + value;
   }
-
-  async convert(bufferOrImage: Buffer | Jimp, mimeType?: MimeType): Promise<Buffer> {
-    const width = this.maxWidth;
-    const height = this.maxHeight;
-    const quality = this.qualityLevel;
-
-    try {
-      // hier een type object van maken aan de hand van een stukje validatie
-      const image = bufferOrImage instanceof Buffer ? await read(bufferOrImage) : bufferOrImage;
-      if (width && image.getWidth() >= width) image.resize(width, Jimp.AUTO);
-      if (height && image.getHeight() >= height) image.resize(Jimp.AUTO, height);
-      if (quality) image.quality(quality);
-
-      return await image.getBufferAsync(mimeType ?? 'image/jpeg');
-    } catch (e) {
-      throw new Error(`Unable to convert image. An error was thrown; ${e.message ?? e}`);
-    }
+  if (typeof padding === "string") {
+    return padding + value;
   }
+  throw new Error(`Expected string or number, got '${typeof padding}'.`);
 }
 
-const processor = new ImageProcessor();
-// buffer
-processor.convert(Buffer.from(''));
-
-// jimp
-Jimp.read('').then(x => {
-  processor.convert(x);
-});
+padLeft2("Hello world", 4);
+padLeft2("Hello world", " test");
+padLeft2("Hello world", true);

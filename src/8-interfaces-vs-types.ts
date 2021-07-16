@@ -11,15 +11,16 @@ interface MyInterface {
 }
 const interfaceProperties: MyInterface = { body: '', title: '' };
 
-// ------------------
+
+// -------- Automatic merging of interface vs type
+
+
 type MyType = {
   title: string;
 };
 type MyType2 = {
-  // haal de 2 weg
+  // Remove the 2
   body: string;
 };
 
 const typeProperties: MyType & MyType2 = { body: '', title: '' };
-
-console.log(interfaceProperties, typeProperties);

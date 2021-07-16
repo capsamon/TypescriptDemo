@@ -7,11 +7,17 @@ interface aReponse {
   title: string;
 }
 
-export function getResponse(): genericResponse<aReponse> {
+interface bReponse {
+  title: string;
+  test: string;
+}
+
+export function getResponse(): genericResponse<bReponse> {
   return {
     status: 'Success',
     body: {
       title: 'a title',
+      test: 'test'
     },
   };
 }

@@ -11,22 +11,22 @@ function checkScopeBadly(scope: SupportedScopesBadly) {
   return true;
 }
 
-console.log(SupportedScopesBadly.AlgemeenLezen); // CHECK this console output :(
+//https://www.typescriptlang.org/play
+console.log(SupportedScopesBadly.AlgemeenLezen); //Console outputs 0 instead of "AlgemeenLezen"
 checkScopeBadly(SupportedScopesBadly.AlgemeenLezen);
 
 // -------------------------------------
 
-// const supportedScopes = ['AlgemeenLezen'] as const; // Mark the as const keyword
+const supportedScopes = ['AlgemeenLezen'] as const; // Mark the as const keyword
 
-// type SupportedScopes = typeof supportedScopes[number];
-// function checkScopeGood(scope: SupportedScopes) {
-//   if (!supportedScopes.includes(scope)) {
-//     return false;
-//   }
-//   // actual check
-//   return true;
-// }
+type SupportedScopes = typeof supportedScopes[number];
+function checkScopeGood(scope: SupportedScopes) {
+  if (!supportedScopes.includes(scope)) {
+    return false;
+  }
+  //Actual check
+  return true;
+}
 
-// checkScopeGood('AlgemeenLezen');
-
-// // Toon gecomipileerde versies op playground
+//During debugging, it will show the correct value
+checkScopeGood('AlgemeenLezen');
