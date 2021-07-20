@@ -31,4 +31,4 @@ function padLeft2(value: string, padding: string | number) {
 
 padLeft2("Hello world", 4);
 padLeft2("Hello world", " test");
-padLeft2("Hello world", true);
+// padLeft2("Hello world", true);

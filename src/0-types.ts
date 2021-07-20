@@ -19,6 +19,7 @@ const myTypedArray: Array<string | number | boolean> = ['a', 'b', 'c', 1, 2, 3, 
 
 //Implicit array values
 const myUntypedArray = ['a', 'b', 'c', 1, 2, 3, true, false, new Date()];
+// What if I remove the date type?
 myUntypedArray.push(new Date());
 
 //Read only arrays
@@ -35,7 +36,8 @@ myTypedObject.something = true;
 
 //Implicit object typing 
 const myUntypedObject = {};
-myUntypedObject.somethingElse = true;
+// Will this work?
+// myUntypedObject.somethingElse = true;
 
 //Interface example
 interface myInterface {
@@ -58,6 +60,7 @@ class Test {
   }
 
   doStuff() {
-    this.propertyA = 234;
+    //Will this work?
+    // this.propertyA = 234;
   }
 }

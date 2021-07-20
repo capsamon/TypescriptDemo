@@ -12,6 +12,7 @@ interface bReponse {
   test: string;
 }
 
+// What happends when I change bResponse to aReponse?
 export function getResponse(): genericResponse<bReponse> {
   return {
     status: 'Success',

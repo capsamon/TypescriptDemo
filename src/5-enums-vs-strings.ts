@@ -12,12 +12,12 @@ function checkScopeBadly(scope: SupportedScopesBadly) {
 }
 
 //https://www.typescriptlang.org/play
-console.log(SupportedScopesBadly.AlgemeenLezen); //Console outputs 0 instead of "AlgemeenLezen"
+console.log(SupportedScopesBadly.AlgemeenLezen); // What will the console output?
 checkScopeBadly(SupportedScopesBadly.AlgemeenLezen);
 
 // -------------------------------------
 
-const supportedScopes = ['AlgemeenLezen'] as const; // Mark the as const keyword
+const supportedScopes = ['AlgemeenLezen'] as const;
 
 type SupportedScopes = typeof supportedScopes[number];
 function checkScopeGood(scope: SupportedScopes) {

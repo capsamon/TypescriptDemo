@@ -4,8 +4,8 @@ interface myInterface {
   property3: boolean;
 }
 
-export function readInformationBadly(properties: myInterface): void {
-  console.log(properties.property1); // Why ask for an interface if we only use one property?
+export function readInformationBadly(properties: myInterface): void { //Why is this bad?
+  console.log(properties.property1); 
 }
 
 export function readInformationWithInlineType(property1: string): void {
